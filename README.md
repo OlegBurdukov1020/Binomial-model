@@ -11,6 +11,7 @@ I'd also like to pay a tribute to the Group 1 from this course for their commitm
 binomial.eu.call() --- estimates the present value of an European call. 
 
 binomial.eu.put() --- estimates the present value of an European put.
+
 Key inputs:
   - 'r' – risk free interest rate (p.a.)
   - 's' – volatility rate of the underlying.

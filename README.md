@@ -9,6 +9,7 @@ I'd also like to pay a tribute to the Group 1 from this course for their commitm
 
 ## Description of Functions
 binomial.eu.call() --- estimates the present value of an European call. 
+
 binomial.eu.put() --- estimates the present value of an European put.
 Key inputs:
   - 'r' – risk free interest rate (p.a.)
@@ -21,7 +22,9 @@ Key inputs:
   - 'show_payoff' – if 'TRUE', displays the payoff graph (incl. premium).
 
 binomial.am.call() --- estimates the present value of an American call.
+
 binomial.am.put() --- estimates the present value of an American put.
+
 Additionally to the input from the previous functions, the latter 2 also have:
 - 'div' – if not 'NULL', considers the given amount of dividends in the model.
 - 'exdivdate' – assigns the ex-dividend date into function. Cannot be missed, if 'div' isn't 'NULL'.

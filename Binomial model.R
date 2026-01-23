@@ -3,7 +3,8 @@ library(lattice)
 library(ggplot2)
 library(ggshadow)
 
-binomial.eu.call <- function(r, s, S0, E, T, n, position = FALSE, show_payoff = FALSE) {
+binomial.eu.call <- function(r, s, S0, E, T, n, position = FALSE, 
+                             show_payoff = FALSE) {
   
   if (!is.numeric(r) || length(r) != 1) {
     stop("r must be a single numeric value.")
@@ -67,6 +68,7 @@ binomial.eu.call <- function(r, s, S0, E, T, n, position = FALSE, show_payoff = 
               axis.title.y = element_text(color = 'white'))
       print(Theplot)
     }
+    
     if(position == 'short') {
       frame_plot <- data.frame(x = St,
                                y = -(pmax(St-E,0)-C0*(1+r)^T))
@@ -104,7 +106,8 @@ binomial.eu.call <- function(r, s, S0, E, T, n, position = FALSE, show_payoff = 
 }
 binomial.eu.call(0.035, 0.15, 150, 130, 1, 100, position = 'long', show_payoff = TRUE)
 
-binomial.eu.put <- function(r, s, S0, E, T, n, position = FALSE, show_payoff = FALSE) {
+binomial.eu.put <- function(r, s, S0, E, T, n, position = FALSE, 
+                            show_payoff = FALSE) {
   
   if (!is.numeric(r) || length(r) != 1) {
     stop("r must be a single numeric value.")
@@ -204,7 +207,8 @@ binomial.eu.put <- function(r, s, S0, E, T, n, position = FALSE, show_payoff = F
 }
 binomial.eu.put(0.035, 0.15, 150, 130, 1, 100, position = 'short', show_payoff = TRUE)
 
-binomial.am.call <- function(r, s, S0, E, T, n, div = NULL, exdivdate = NULL) {
+binomial.am.call <- function(r, s, S0, E, T, n, position = FALSE, 
+                             show_payoff = FALSE, div = NULL, exdivdate = NULL) {
   
   if (!is.numeric(r) || length(r) != 1) {
     stop("r must be a single numeric value.")
@@ -277,9 +281,91 @@ binomial.am.call <- function(r, s, S0, E, T, n, div = NULL, exdivdate = NULL) {
       }
     }
   }
-  return(Ct[[1]])
+  
+  if(show_payoff == TRUE) {
+    if(position == 'long') {
+      
+      PVC0 <- numeric(length = n+1)
+      total <- vector('list', length = n+1)
+      for(i in 1:(n+1)) {
+        PVC0[i] <- Ct[[1]]*((1+r)^((i-1)*deltat))
+        total[[i]] <- numeric(i)
+        total[[i]] <- EX[[i]] - PVC0[i]
+      }
+      
+      St_vec <- unlist(St, use.names = FALSE)
+      total_vec <- unlist(total, use.names = FALSE)
+      
+      frame_plot <- data.frame(x = St_vec,
+                               y = total_vec)
+      
+      Theplot <- ggplot(frame_plot, aes(x, y)) +
+        geom_glowline(color = 'darkkhaki',
+                      linetype = 'solid') +
+        labs(x = 'St',
+             y = 'Exercise value (incl. premium)',
+             title = "The Option's Payoff in Case of Exercise",
+             subtitle = '(long American call)') +
+        theme(plot.background = element_rect(fill = "grey10"),
+              panel.background = element_rect(fill = "grey10"),
+              plot.title = element_text(hjust = 0.5,
+                                        color = 'white'),
+              plot.subtitle = element_text(hjust = 0.5,
+                                           color = 'white'),
+              axis.title.x = element_text(color = 'white'),
+              axis.title.y = element_text(color = 'white'))
+      print(Theplot)
+    }
+    
+    if(position == 'short') {
+      PVC0 <- numeric(length = n+1)
+      total <- vector('list', length = n+1)
+      for(i in 1:(n+1)) {
+        PVC0[i] <- Ct[[1]]*((1+r)^((i-1)*deltat))
+        total[[i]] <- numeric(i)
+        total[[i]] <- -(EX[[i]] - PVC0[i])
+      }
+      
+      St_vec <- unlist(St, use.names = FALSE)
+      total_vec <- unlist(total, use.names = FALSE)
+      
+      frame_plot <- data.frame(x = St_vec,
+                               y = total_vec)
+      
+      Theplot <- ggplot(frame_plot, aes(x, y)) +
+        geom_glowline(color = 'darkkhaki',
+                      linetype = 'solid') +
+        labs(x = 'St',
+             y = 'Exercise value (incl. premium)',
+             title = "The Option's Payoff in Case of Exercise",
+             subtitle = '(short American call)') +
+        theme(plot.background = element_rect(fill = "grey10"),
+              panel.background = element_rect(fill = "grey10"),
+              plot.title = element_text(hjust = 0.5,
+                                        color = 'white'),
+              plot.subtitle = element_text(hjust = 0.5,
+                                           color = 'white'),
+              axis.title.x = element_text(color = 'white'),
+              axis.title.y = element_text(color = 'white'))
+      print(Theplot)
+    }
+  }
+  
+  if(position == 'long') {
+    cat('The premium due (C0)')
+    return(Ct[[1]])
+  } else {
+    if(position == 'short') {
+      cat('The premium to ask(C0)')
+      return(Ct[[1]])
+    } else {
+      cat('The premium due (C0)')
+      return(Ct[[1]])
+    }
+  }
 }
-binomial.am.put <- function(r, s, S0, E, T, n, div = NULL, exdivdate = NULL) {
+binomial.am.put <- function(r, s, S0, E, T, n, position = FALSE, 
+                            show_payoff = FALSE, div = NULL, exdivdate = NULL) {
   
   if (!is.numeric(r) || length(r) != 1) {
     stop("r must be a single numeric value.")
@@ -352,13 +438,99 @@ binomial.am.put <- function(r, s, S0, E, T, n, div = NULL, exdivdate = NULL) {
       }
     }
   }
-  return(Ct[[1]])
+  
+  if(show_payoff == TRUE) {
+    if(position == 'long') {
+      
+      PVC0 <- numeric(length = n+1)
+      total <- vector('list', length = n+1)
+      for(i in 1:(n+1)) {
+        PVC0[i] <- Ct[[1]]*((1+r)^((i-1)*deltat))
+        total[[i]] <- numeric(i)
+        total[[i]] <- EX[[i]] - PVC0[i]
+      }
+      
+      St_vec <- unlist(St, use.names = FALSE)
+      total_vec <- unlist(total, use.names = FALSE)
+      
+      frame_plot <- data.frame(x = St_vec,
+                               y = total_vec)
+      
+      Theplot <- ggplot(frame_plot, aes(x, y)) +
+        geom_glowline(color = 'darkkhaki',
+                      linetype = 'solid') +
+        labs(x = 'St',
+             y = 'Exercise value (incl. premium)',
+             title = "The Option's Payoff in Case of Exercise",
+             subtitle = '(long American put)') +
+        theme(plot.background = element_rect(fill = "grey10"),
+              panel.background = element_rect(fill = "grey10"),
+              plot.title = element_text(hjust = 0.5,
+                                        color = 'white'),
+              plot.subtitle = element_text(hjust = 0.5,
+                                           color = 'white'),
+              axis.title.x = element_text(color = 'white'),
+              axis.title.y = element_text(color = 'white'))
+      print(Theplot)
+    }
+    if(position == 'short') {
+      
+      PVC0 <- numeric(length = n+1)
+      total <- vector('list', length = n+1)
+      for(i in 1:(n+1)) {
+        PVC0[i] <- Ct[[1]]*((1+r)^((i-1)*deltat))
+        total[[i]] <- numeric(i)
+        total[[i]] <- EX[[i]] - PVC0[i]
+      }
+      
+      St_vec <- unlist(St, use.names = FALSE)
+      total_vec <- unlist(total, use.names = FALSE)
+      
+      frame_plot <- data.frame(x = St_vec,
+                               y = total_vec)
+      
+      Theplot <- ggplot(frame_plot, aes(x, y)) +
+        geom_glowline(color = 'darkkhaki',
+                      linetype = 'solid') +
+        labs(x = 'St',
+             y = 'Exercise value (incl. premium)',
+             title = "The Option's Payoff in Case of Exercise",
+             subtitle = '(short American put)') +
+        theme(plot.background = element_rect(fill = "grey10"),
+              panel.background = element_rect(fill = "grey10"),
+              plot.title = element_text(hjust = 0.5,
+                                        color = 'white'),
+              plot.subtitle = element_text(hjust = 0.5,
+                                           color = 'white'),
+              axis.title.x = element_text(color = 'white'),
+              axis.title.y = element_text(color = 'white'))
+      print(Theplot)
+    }
+  }
+  
+  if(position == 'long') {
+    cat('The premium due (C0)')
+    return(Ct[[1]])
+  } else {
+    if(position == 'short') {
+      cat('The premium to ask(C0)')
+      return(Ct[[1]])
+    } else {
+      cat('The premium due (C0)')
+      return(Ct[[1]])
+    }
+  }
 }
 
-binomial.am.call(0.035, 0.15, 150, 130, 1, 100)
+binomial.am.call(0.035, 0.15, 150, 130, 1, 3)
 binomial.am.put(0.035, 0.15, 150, 130, 1, 100)
 binomial.am.call(0.035, 0.2, 150, 121.99, 1, 2, div = 30, exdivdate = 2)
 binomial.am.put(0.035, 0.2, 150, 121.99, 1, 2, div = 30, exdivdate = 2)
+binomial.am.call(0.035, 0.2, 150, 121.99, 1, 3, position = 'short', 
+                 show_payoff = TRUE, div = 30, exdivdate = 2)
+binomial.am.put(0.035, 0.2, 150, 150, 1, 3, position = 'long', 
+                 show_payoff = TRUE)
+
 
 binomial.path <- function(S0, r, s, n , T, plot = NULL) {
   
@@ -420,4 +592,3 @@ binomial.path <- function(S0, r, s, n , T, plot = NULL) {
   }
 }
 binomial.path(150, 0.035, 0.4, 100, 1, plot = TRUE)
-

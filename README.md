@@ -7,6 +7,11 @@ I'd also like to pay a tribute to the Group 1 from this course for their commitm
 ## Contents
 - 'Binomial model.R' – the main R script with all functions.
 
+## How to run
+1. Clone the repository
+2. Open the `.Rproj` file in RStudio
+3. Run `binomial_model.R`
+
 ## Description of Functions
 binomial.eu.call() --- estimates the present value of an European call. 
 
@@ -32,3 +37,11 @@ Additionally to the input from the previous functions, the latter 2 also have:
 
 binomial.path() --- helps model a sample binomial path given the input for an option.
                     The output contains all spot rates of underlying across the binomial tree as well as its pace from today till the maturity date.
+
+Key inputs:
+- 'S0' – current price of underlying.
+- 'r' – risk free interest rate (p.a.).
+- 's' – volatility rate of the underlying.
+- 'n' – number of steps in the binomial tree.
+- 'T' – period of time to maturity date (in years).
+- 'plot' – if 'TRUE', plots a sample binomial path of the underlying.

@@ -5,7 +5,7 @@ Taking this opportunity, I'd like to express my gratitude to Associate Professor
 I'd also like to pay a tribute to the Group 1 from this course for their commitment on our common work item and to my trusted peer advisor Ivan Tsots for his organisational advice on my project
 
 ## Contents
-- 'Binomial model.R' – the main R script with all function.
+- 'Binomial model.R' – the main R script with all functions.
 
 ## Description of Functions
 binomial.eu.call() --- estimates the present value of an European call. 
@@ -15,7 +15,7 @@ binomial.eu.put() --- estimates the present value of an European put.
 Key inputs:
   - 'r' – risk free interest rate (p.a.)
   - 's' – volatility rate of the underlying.
-  - 's0' – current price of underlying.
+  - 'S0' – current price of underlying.
   - 'E' – the exercise price.
   - 'T' – period of time to maturity date (in years).
   - 'n' – number of steps in the binomial tree.

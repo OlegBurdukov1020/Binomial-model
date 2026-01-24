@@ -7,22 +7,28 @@ binomial.eu.call <- function(r, s, S0, E, T, n, position = FALSE,
                              show_payoff = FALSE) {
   
   if (!is.numeric(r) || length(r) != 1) {
-    stop("r must be a single numeric value.")
+    warning("r must be a single numeric value. 0 returned")
+    return(0)
   }
   if (!is.numeric(s) || length(s) != 1 || s <= 0) {
-    stop("s must be a single numeric value > 0.")
+    warning("s must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(S0) || length(S0) != 1 || S0 <= 0) {
-    stop("S0 must be a single numeric value > 0.")
+    warning("S0 must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(E) || length(E) != 1 || E < 0) {
-    stop("E must be a single numeric value >= 0.")
+    warning("E must be a single numeric value >= 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(T) || length(T) != 1 || T <= 0) {
-    stop("T must be a single numeric value > 0.")
+    warning("T must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(n) || length(n) != 1 || n < 1 || n != as.integer(n)) {
-    stop("n must be an integer >= 1.")
+    warning("n must be an integer >= 1.")
+    return(0)
   }
 
   deltat <- T/n
@@ -110,22 +116,28 @@ binomial.eu.put <- function(r, s, S0, E, T, n, position = FALSE,
                             show_payoff = FALSE) {
   
   if (!is.numeric(r) || length(r) != 1) {
-    stop("r must be a single numeric value.")
+    warning("r must be a single numeric value. 0 returned")
+    return(0)
   }
   if (!is.numeric(s) || length(s) != 1 || s <= 0) {
-    stop("s must be a single numeric value > 0.")
+    warning("s must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(S0) || length(S0) != 1 || S0 <= 0) {
-    stop("S0 must be a single numeric value > 0.")
+    warning("S0 must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(E) || length(E) != 1 || E < 0) {
-    stop("E must be a single numeric value >= 0.")
+    warning("E must be a single numeric value >= 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(T) || length(T) != 1 || T <= 0) {
-    stop("T must be a single numeric value > 0.")
+    warning("T must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(n) || length(n) != 1 || n < 1 || n != as.integer(n)) {
-    stop("n must be an integer >= 1.")
+    warning("n must be an integer >= 1. 0 returned")
+    return(0)
   }
   
   deltat <- T/n
@@ -211,25 +223,32 @@ binomial.am.call <- function(r, s, S0, E, T, n, position = FALSE,
                              show_payoff = FALSE, div = NULL, exdivdate = NULL) {
   
   if (!is.numeric(r) || length(r) != 1) {
-    stop("r must be a single numeric value.")
+    warning("r must be a single numeric value. 0 returned")
+    return(0)
   }
   if (!is.numeric(s) || length(s) != 1 || s <= 0) {
-    stop("s must be a single numeric value > 0.")
+    warning("s must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(S0) || length(S0) != 1 || S0 <= 0) {
-    stop("S0 must be a single numeric value > 0.")
+    warning("S0 must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(E) || length(E) != 1 || E < 0) {
-    stop("E must be a single numeric value >= 0.")
+    warning("E must be a single numeric value >= 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(T) || length(T) != 1 || T <= 0) {
-    stop("T must be a single numeric value > 0.")
+    warning("T must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(n) || length(n) != 1 || n < 1 || n != as.integer(n)) {
-    stop("n must be an integer >= 1.")
+    warning("n must be an integer >= 1. 0 returned")
+    return(0)
   }
   if(!is.null(div) && is.null(exdivdate)) {
-    stop('Ex-dividend date is not assigned.')
+    warning('Ex-dividend date is not assigned. 0 returned')
+    return(0)
   } 
   
   deltat <- T/n
@@ -368,25 +387,32 @@ binomial.am.put <- function(r, s, S0, E, T, n, position = FALSE,
                             show_payoff = FALSE, div = NULL, exdivdate = NULL) {
   
   if (!is.numeric(r) || length(r) != 1) {
-    stop("r must be a single numeric value.")
+    warning("r must be a single numeric value. 0 returned")
+    return(0)
   }
   if (!is.numeric(s) || length(s) != 1 || s <= 0) {
-    stop("s must be a single numeric value > 0.")
+    warning("s must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(S0) || length(S0) != 1 || S0 <= 0) {
-    stop("S0 must be a single numeric value > 0.")
+    warning("S0 must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(E) || length(E) != 1 || E < 0) {
-    stop("E must be a single numeric value >= 0.")
+    warning("E must be a single numeric value >= 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(T) || length(T) != 1 || T <= 0) {
-    stop("T must be a single numeric value > 0.")
+    warning("T must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(n) || length(n) != 1 || n < 1 || n != as.integer(n)) {
-    stop("n must be an integer >= 1.")
+    warning("n must be an integer >= 1. 0 returned")
+    return(0)
   }
   if(!is.null(div) && is.null(exdivdate)) {
-    stop('Ex-dividend date is not assigned.')
+    warning('Ex-dividend date is not assigned. 0 returned')
+    return(0)
   } 
   
   deltat <- T/n
@@ -535,19 +561,24 @@ binomial.am.put(0.035, 0.2, 150, 150, 1, 3, position = 'long',
 binomial.path <- function(S0, r, s, n , T, plot = NULL) {
   
   if (!is.numeric(r) || length(r) != 1) {
-    stop("r must be a single numeric value.")
+    warning("r must be a single numeric value. 0 returned")
+    return(0)
   }
   if (!is.numeric(s) || length(s) != 1 || s <= 0) {
-    stop("s must be a single numeric value > 0.")
+    warning("s must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(S0) || length(S0) != 1 || S0 <= 0) {
-    stop("S0 must be a single numeric value > 0.")
+    warning("S0 must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(T) || length(T) != 1 || T <= 0) {
-    stop("T must be a single numeric value > 0.")
+    warning("T must be a single numeric value > 0. 0 returned")
+    return(0)
   }
   if (!is.numeric(n) || length(n) != 1 || n < 1 || n != as.integer(n)) {
-    stop("n must be an integer >= 1.")
+    warning("n must be an integer >= 1. 0 returned")
+    return(0)
   }
 
   deltat <- T/n

@@ -277,7 +277,7 @@ binomial.am.call <- function(r, s, S0, E, T, n, position = FALSE,
   if(!is.null(div)) {
     for(i in 1:(exdivdate)) {
       for(j in 0:(i-1)) {
-        St[[i]][[j+1]] <- St[[i]][[j+1]] + div/((1+r)^(deltat*exdivdate+1-i))
+        St[[i]][[j+1]] <- St[[i]][[j+1]] + div/((1+r)^(deltat*(exdivdate+1-i)))
       }
     }
   }
@@ -623,3 +623,4 @@ binomial.path <- function(S0, r, s, n , T, plot = NULL) {
   }
 }
 binomial.path(150, 0.035, 0.4, 100, 1, plot = TRUE)
+

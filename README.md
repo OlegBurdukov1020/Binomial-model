@@ -2,7 +2,7 @@
 This project contains essential computation and illustration functions for valuation of call and put options by well known binomial model. 
 The whole project was created as an extended version of my university project on the same topic. 
 Taking this opportunity, I'd like to express my gratitude to Associate Professor Dr. Josef Leydold for conducting the course of Computing and for the clear and reasonable assignment design that inspired me to proceed my work on this project using the initial tasks as an appropriate basis. 
-I'd also like to pay a tribute to the Group 1 from this course for their commitment on our common work item and to my trusted peer advisor Ivan Tsots for his organisational advice on my project
+I'd also like to pay a tribute to my trusted peer advisor Ivan Tsots for his organisational advice on my project.
 
 ## Contents
 - 'Binomial model.R' – the main R script with all functions.

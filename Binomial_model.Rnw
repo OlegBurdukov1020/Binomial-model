@@ -236,6 +236,6 @@ From this part, we might notice that, in any unclear case, the code assumes a lo
 
 
 
-This file is still in progress. 
+This document is still in progress. 
 For further information and assistance, please, contact the author per E-Mail: burdukovoleh@gmail.com
 \end{document}

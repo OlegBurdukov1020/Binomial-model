@@ -6,6 +6,9 @@ I'd also like to pay a tribute to my trusted peer advisor Ivan Tsots for his org
 
 ## Contents
 - 'Binomial model.R' – the main R script with all functions.
+- 'Binomial model.Rproj' – the RStudio file containing the project
+- 'Binomial_model.Rnw' – the LaTeX document
+- 'Binomial_model.pdf' – the ready-to-read PDF document with presentation of the project
 
 ## How to run
 1. Clone the repository

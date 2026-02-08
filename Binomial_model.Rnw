@@ -219,23 +219,21 @@ if(position == 'long') {
 From this part, we might notice that, in any unclear case, the code assumes a long position in the contract.
 
 \section{The sample-path function}
+The sample-path function yields opportunity to see a possible way of the underlying's spot rate development across the binomial tree. Given the data of an option, you obtain an assumed scenario graph for the forward price of underlying by simply applying this tool. 
 
+This function is perhaps the only useless routine in the whole code. Although it sometimes come in handy to see a scenario example (say, just to make sure what the given volatility level can lead you to by the end of the tree), there is no other valuable use from it. In fact, the only reason I created it was my university project's task. So I decided it wouldn't hurt to the work of mine, if I add this routine to the others.
 
+Note that one needs to employ argument 'plot' in order to get the scenario graph. Else one will see merely all forward rates of the underlying from the BT.
 
+\section{Summary}
+During the project's development I tried to take into account all significant specifics of every option kind you may find in the code. In this regard, I can mention the mechanism of the dividends consideration for American options, which required separate analysis of how this concept can be efficiently integrated in the code body of the function.
 
+Every function's correctness has been checked by manual computations of (mainly) exercises from my university course of 'financial management and valuation'. In this way, I tried to deliver robust double check to my work, so that every routine of it might be employed by users immediately. For convenience, I wrote this introductory document so that one could familiarise oneself with project much easier. 
 
+So I do really hope, that my project will find its consumer and that it will be helpful for any of user's professional needs. 
+\bigskip
+\bigskip
+\bigskip
 
-
-
-
-
-
-
-
-
-
-
-
-This document is still in progress. 
-For further information and assistance, please, contact the author per E-Mail: burdukovoleh@gmail.com
+For further information, assistance, collaboration offers and related suggestions, please, contact the author per E-Mail: burdukovoleh@gmail.com
 \end{document}
